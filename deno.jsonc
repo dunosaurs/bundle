@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "test": "deno test -A",
+    "install": "deno install -Af --reload -n bundle ./cli.ts"
+  }
+}
