@@ -1,4 +1,4 @@
-import { brightGreen, brightRed, deno_plugin, esbuild } from "../deps.ts";
+import { brightGreen, brightRed, deno_plugins, esbuild } from "../deps.ts";
 import { debug_plugin } from "./debug_plugin.ts";
 
 export interface BundleOptions {
@@ -23,7 +23,7 @@ export async function bundle(options: BundleOptions) {
     bundle: true,
     outfile: options.output,
     entryPoints: [options.entry],
-    plugins: options.debug ? [debug_plugin, deno_plugin()] : [deno_plugin()],
+    plugins: options.debug ? [debug_plugin, ...deno_plugins()] : deno_plugins(),
     write: true,
     minify: true,
     format: "esm",
@@ -31,17 +31,6 @@ export async function bundle(options: BundleOptions) {
   });
 
   console.log(`${brightGreen("Output")} "${options.output}"`);
-
-  // There's a bug where deno_esbuild_plugin will always make
-  // a node_modules folder. That's pretty stupid. I just delete
-  // it here for now until that gets resolved.
-  try {
-    Deno.removeSync("./node_modules", {
-      recursive: true,
-    });
-  } catch {
-    // no-op
-  }
 
   esbuild.stop();
 }

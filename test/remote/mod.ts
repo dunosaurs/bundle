@@ -1,4 +1,4 @@
-import { retry } from "https://deno.land/std@0.178.0/async/mod.ts";
+import { retry } from "https://deno.land/std@0.188.0/async/mod.ts";
 
 const req = async () => {
   // some function that throws sometimes

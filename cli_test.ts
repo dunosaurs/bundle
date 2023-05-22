@@ -1,8 +1,8 @@
 import {
   assert,
   assertEquals,
-} from "https://deno.land/std@0.178.0/testing/asserts.ts";
-import $ from "https://deno.land/x/dax@0.28.0/mod.ts";
+} from "https://deno.land/std@0.188.0/testing/asserts.ts";
+import $ from "https://deno.land/x/dax@0.31.1/mod.ts";
 
 Deno.test("Able to install", async () => {
   await $`deno task install`.quiet();
